@@ -1,0 +1,65 @@
+ <!-- footer comun --> 
+
+ <!-- FOOTER -->
+     <footer class="site-footer mt-auto bg-dark text-white text-center py-3">
+          <div class="container">
+               <div class="row">
+
+                    <div class="ml-auto col-lg-4 col-md-5" >
+                        <p class="copyright-text"  style="color:aliceblue">Copyright &copy; 2020 Gymso Fitness Co.
+                        
+                        <br>Design: <a href="https://www.tooplate.com"  style="color:aliceblue">Tooplate</a></p>
+                    </div>
+
+                    <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
+                        <p class="mr-4">
+                            <i class="fa fa-envelope-o mr-1"  style="color:aliceblue"></i>
+                            <a href="#"  style="color:aliceblue">hello@company.co</a>
+                        </p>
+
+                        <p  style="color:aliceblue"><i class="fa fa-phone mr-1"  style="color:aliceblue"></i> 010-020-0840</p>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="membershipForm" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h2 class="modal-title" id="membershipFormLabel">Membership Form</h2>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form class="membership-form webform" role="form">
+                <input type="text" class="form-control" name="cf-name" placeholder="John Doe">
+
+                <input type="email" class="form-control" name="cf-email" placeholder="Johndoe@gmail.com">
+
+                <input type="tel" class="form-control" name="cf-phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+
+                <textarea class="form-control" rows="3" name="cf-message" placeholder="Additional Message"></textarea>
+
+                <button type="submit" class="form-control" id="submit-button" name="submit">Submit Button</button>
+
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="signup-agree">
+                    <label class="custom-control-label text-small text-muted" for="signup-agree">I agree to the <a href="#">Terms &amp;Conditions</a>
+                    </label>
+                </div>
+            </form>
+          </div>
+
+          <div class="modal-footer"></div>
+
+        </div>
+      </div>
+    </div>
