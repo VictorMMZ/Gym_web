@@ -72,11 +72,12 @@ https://www.tooplate.com/view/2119-gymso-fitness
     <section class="planes contact section flex-fill " id="planes">
          <h2 class="text-center mb-5" style="color:tomato">Planes de Suscripción</h2>
 
-    <div class="row g-4" data-aos="fade-left" data-aos-delay="200">
+    <div class="row g-5" data-aos="fade-left" data-aos-delay="200" style="height: 400px;">
 
         <!-- Plan Básico -->
         <div class="col-md-4" >
             <div class="card shadow h-100"  style="background-color: lightgrey;">
+                <img src="./assets/images/plan_basico.jpg" class="card-img-top" alt="Plan Básico">
                 <div class="card-body text-center">
                     <h5 class="card-title">Básico</h5>
                     <h2 class="my-3">29.99€ <small class="text-muted">/ mes</small></h2>
@@ -86,7 +87,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                         <li>✔ Pulsera magnetica de acceso</li>
                         <li>✔ Acceso a la App de ejercicios</li>
                     </ul>
-                    <a href="login.php" class="btn btn-secondary w-100">Elegir plan</a>
+                    <a href="registro.php" class="btn btn-secondary w-100">Elegir plan</a>
                 </div>
             </div>
         </div>
@@ -94,6 +95,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
         <!-- Plan Pro -->
         <div class="col-md-4" >
             <div class="card shadow h-100 " style="background-color:lightslategray;" style="background-color: lightgrey;">
+                <img src="./assets/images/plan_pro.jpg" class="card-img-top" alt="Plan Básico">
                 <div class="card-body text-center">
                     <h5 class="card-title ">Pro</h5>
                     <h2 class="my-3">32.99€ <small class="text-muted">/ mes</small></h2>
@@ -104,7 +106,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                         <li>✔ Buzon de consulta con entrenadores</li>
                         
                     </ul>
-                    <a href="login.php" class="btn btn-secondary w-100">Elegir plan</a>
+                    <a href="registro.php" class="btn btn-secondary w-100">Elegir plan</a>
                 </div>
             </div>
         </div>
@@ -112,6 +114,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
         <!-- Plan Premium -->
         <div class="col-md-4" >
             <div class="card shadow h-100" style="background-color:tomato;">
+                <img src="./assets/images/plan_premium.jpg" class="card-img-top" alt="Plan Básico">
                 <div class="card-body text-center">
                     <h5 class="card-title">Premium</h5>
                     <h2 class="my-3">35.99€ <small class="text-muted">/ mes</small></h2>
@@ -121,7 +124,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                         <li>✔ 3 Entreamientos personalizados por semana</li>
                         <li>✔ Taquilla reservada</li>
                     </ul>
-                    <a href="login.php" class="btn btn-secondary w-100">Elegir plan</a>
+                    <a href="registro.php" class="btn btn-secondary w-100">Elegir plan</a>
                 </div>
                  
             </div>

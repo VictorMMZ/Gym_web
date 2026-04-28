@@ -10,21 +10,16 @@ include "./includes/header.php"
                         <h2 class="mb-4 pb-2" style="color:tomato" data-aos="fade-up" data-aos-delay="200">Registro</h2>
 
                         <form action="registro2.php" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
-
                             <input type="text" class="form-control" name="usuario" placeholder=" Nombre usuario">
                             <input type="text" class="form-control" name="password" placeholder="Contraseña">
                             <input type="text" class="form-control" name="repassword" placeholder="Repita la contraseña">
-                            <button type="submit" class="btn btn-primary w-100" id="submit-button" name="submit">Registrarse </button>
-                            <a href="login.php" class="btn btn-secondary w-100 mt-2" id="back-button">Go back</a>
-                             </form>
+                            <button type="button" class="btn btn-dark w-100 mt-3" onclick="window.location.href='dashboard_usuario.php'" id="submit-button"> Registrarse </button>
+                            <a href="registro.php" class="btn btn-secondary w-100 mt-2" id="back-button">Go back</a>
+                        </form>
                     </div>
                        
-                    </div>
-                    </div>
-                    </div>
-
-        
-
+                </div>
+            </div>            
     </section>
      <!-- FOOTER -->
     <?php
