@@ -1,1 +1,0 @@
-// funciones utilizadas en los diferentes archivos ,asi como las que te dan los valores de las tablas en la base de datos

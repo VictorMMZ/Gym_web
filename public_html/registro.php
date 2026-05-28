@@ -1,5 +1,24 @@
 <?php
-include "./includes/header.php"
+include "./includes/header.php";
+require_once '../app/auth.php';
+
+$mensaje = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = trim($_POST['user-name'] ?? '');
+    $apellidos = trim($_POST['user-lastname'] ?? '');
+    $telefono = trim($_POST['user-phone'] ?? '');
+    $correo = trim($_POST['correo'] ?? '');
+    $contraseña = $_POST['contraseña'] ?? '';
+    $repetirContraseña = $_POST['repetir_contraseña'] ?? '';
+
+    $resultado = registrarUsuario($correo, $contraseña, $repetirContraseña, $nombre, $apellidos, $telefono);
+    if ($resultado === true) {
+        $mensaje = "Registro exitoso. <a href='login.php'>Inicia sesión</a>";
+    } else {
+        $mensaje = $resultado;
+    }
+}
 ?>
     <!-- SIGN UP -->
     <section class="backsignup contact section flex-fill " id="signin">
@@ -7,39 +26,21 @@ include "./includes/header.php"
                <div class="row">
 
                     <div class="mx-auto col-lg-5 col-md-6 col-12">
-                        <h2 class="mb-4 pb-2" style="color:tomato" data-aos="fade-up" data-aos-delay="200">Tus Datos</h2>
+                        <h2 class="mb-4 pb-2" style="color:tomato" data-aos="fade-up" data-aos-delay="200">Registro de Usuario</h2>
 
-                        <form action="login.php" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
-                            <input type="text" class="form-control" name="user-name" placeholder="Name">
-                            <input type="text" class="form-control" name="user-lastname" placeholder="Last Name">                         
-                            <input type="text" class="form-control" name="user-phone" placeholder="Phone">
-                            <input type="text" class="form-control" name="birth-date" placeholder="Fecha de nacimiento (dd/mm/aaaa)">
-                            
-       <div class="mb-3 mt-2" style="background: #fff; border-radius: 6px;">
-    <label class="form-control"  >Género</label>
+                        <?php if ($mensaje): ?>
+                            <div class="alert alert-info"><?php echo $mensaje; ?></div>
+                        <?php endif; ?>
 
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="genero" value="Hombre" id="genHombre">
-        <label class="form-check-label" for="genHombre" >Hombre</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="genero" value="Mujer" id="genMujer">
-        <label class="form-check-label" for="genMujer" >Mujer</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="genero" value="Otro" id="genOtro">
-        <label class="form-check-label" for="genOtro" >Otro</label>
-    </div>
-</div>
-
-                            <input type="text" class="form-control" name="zip_code" placeholder="Código Postal">
-                             <a href="registro2.php" class="btn btn-dark w-100" id="submit-button" name="registro_siguiente">Continuar</a>
-                            <a href="signup_plan.php" class="btn btn-secondary w-100 mt-2" id="back-button">Go back</a>
-
-
-                        </form>
+                        <form method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
+                            <input type="text" class="form-control mb-3" name="user-name" placeholder="Nombre" required>
+                            <input type="text" class="form-control mb-3" name="user-lastname" placeholder="Apellidos" required>                                                
+                            <input type="text" class="form-control mb-3" name="user-phone" placeholder="Teléfono">
+                            <input type="email" class="form-control mb-3" name="correo" placeholder="Correo electrónico" required>
+                            <input type="password" class="form-control mb-3" name="contraseña" placeholder="Contraseña" required>
+                            <input type="password" class="form-control mb-3" name="repetir_contraseña" placeholder="Confirmar Contraseña" required>
+                            <button type="submit" class="btn btn-dark w-100" id="submit-button">Registrarse</button>
+                            <a href="signup_plan.php" class="btn btn-secondary w-100 mt-2" id="back-button">Volver</a>
                     </div>
                     </div>
                     </div>

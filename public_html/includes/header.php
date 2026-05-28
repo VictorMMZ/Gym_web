@@ -38,7 +38,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
                     <li class="nav-item">
-                        <a href="./index.php" class="nav-link smoothScroll">Home</a>
+                        <a href="index.php" class="nav-link smoothScroll">Home</a>
                     </li>
 
                     <li class="nav-item">

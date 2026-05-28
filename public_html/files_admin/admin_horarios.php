@@ -1,5 +1,5 @@
 <?php
-include '../includes/sidebar_admin.php'
+include '../includes/head_sidebar_admin.php'
 ?>
 
 <div class="content">
@@ -29,3 +29,11 @@ include '../includes/sidebar_admin.php'
         </tbody>
     </table>
 </div>
+<?php
+   
+     include '../includes/scripts.php';
+
+    ?>
+
+</body>
+</html>
