@@ -1,5 +1,24 @@
 <?php
     include '../includes/head_sidebar_user.php';
+    require_once '../../config/db.php';
+
+    $id_usuario = $_SESSION['user_id'] ?? null;
+    $nombre = '';
+    $correo = '';
+    $telefono = '';
+    $membresia = '';
+
+    if ($id_usuario) {
+        $stmt = $pdo->prepare("SELECT u.nombre, u.apellidos, u.correo, u.telefono, p.nombre AS plan_nombre FROM usuarios u LEFT JOIN planes p ON u.id_plan = p.id_plan WHERE u.id_usuario = ?");
+        $stmt->execute([$id_usuario]);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($usuario) {
+            $nombre = trim($usuario['nombre'] . ' ' . $usuario['apellidos']);
+            $correo = $usuario['correo'];
+            $telefono = $usuario['telefono'];
+            $membresia = $usuario['plan_nombre'] ?? "Básico";
+        }
+    }
 ?>
     <div class="planes content d-flex justify-content-center">
     <div class="card shadow-sm" style="max-width: 480px; width: 100%; height: fit-content; background: rgba(255, 255, 255, 0.47);" data-aos="fade-up">
@@ -12,31 +31,31 @@
                 <!-- Nombre -->
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" value="Víctor García" readonly>
+                    <input type="text" class="form-control" name="nombre" value="<?= htmlspecialchars($nombre) ?>" readonly>
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
                     <label class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" name="email" value="victor@example.com">
+                    <input type="email" class="form-control" name="email" value="<?= htmlspecialchars($correo) ?>">
                 </div>
 
                 <!-- Teléfono -->
                 <div class="mb-3">
                     <label class="form-label">Teléfono</label>
-                    <input type="text" class="form-control" name="telefono" value="600 123 456">
+                    <input type="text" class="form-control" name="telefono" value="<?= htmlspecialchars($telefono) ?>">
                 </div>
 
                 <!-- Contraseña -->
                 <div class="mb-3">
                     <label class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" name="telefono" value="xxxx"> <!-- si cambia contraseña abrir un bloque que pida contraseña anterior y contraseña nueva si coincide la anterior entonces cambiar a la nueva-->
+                    <input type="password" class="form-control" name="contraseña" placeholder="Dejar en blanco para mantener la actual">
                 </div>
 
                 <!-- Membresía (solo lectura o editable, tú decides) -->
                 <div class="mb-3">
-                    <label class="form-label">Membresía</label>  <!-- Al cambiar de membresia se desplegara un un bloque con las opciones y precios al elegir se le recordara que se le cambiara el precio de la cuota,una vez acepte queda editada para el siguiente periodo -->
-                    <input type="text" class="form-control" name="membresia" value="Premium" readonly>
+                    <label class="form-label">Membresía</label>
+                    <input type="text" class="form-control" name="membresia" value="<?= htmlspecialchars($membresia) ?>" readonly>
                 </div>
 
                 <!-- Botón -->

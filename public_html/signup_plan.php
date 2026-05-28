@@ -42,21 +42,10 @@ https://www.tooplate.com/view/2119-gymso-fitness
                     </li>
 
                     <li class="nav-item">
-                        <a href="#about" class="nav-link smoothScroll">About Us</a>
+                        <a href="login.php" class="nav-link smoothScroll">Login</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="#class" class="nav-link smoothScroll">Classes</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#schedule" class="nav-link smoothScroll">Schedules</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link smoothScroll">Contact</a>
-                    </li>
-                </ul>
+                  
 
                 <ul class="social-icon ml-lg-3">
                     <li><a href="https://fb.com/tooplate" class="fa fa-facebook"></a></li>
@@ -87,7 +76,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                         <li>✔ Pulsera magnetica de acceso</li>
                         <li>✔ Acceso a la App de ejercicios</li>
                     </ul>
-                    <a href="registro.php" class="btn btn-secondary w-100">Elegir plan</a>
+                    <a href="registro.php?plan_id=1" class="btn btn-secondary w-100">Elegir plan</a>
                 </div>
             </div>
         </div>
@@ -106,7 +95,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                         <li>✔ Buzon de consulta con entrenadores</li>
                         
                     </ul>
-                    <a href="registro.php" class="btn btn-secondary w-100">Elegir plan</a>
+                    <a href="registro.php?plan_id=2" class="btn btn-secondary w-100">Elegir plan</a>
                 </div>
             </div>
         </div>
@@ -124,7 +113,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                         <li>✔ 3 Entreamientos personalizados por semana</li>
                         <li>✔ Taquilla reservada</li>
                     </ul>
-                    <a href="registro.php" class="btn btn-secondary w-100">Elegir plan</a>
+                    <a href="registro.php?plan_id=3" class="btn btn-secondary w-100">Elegir plan</a>
                 </div>
                  
             </div>

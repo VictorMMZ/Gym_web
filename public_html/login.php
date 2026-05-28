@@ -1,5 +1,5 @@
 <?php
-include "./includes/header.php";
+include "./includes/header_lite.php";
 require_once '../app/auth.php';
 
 $mensaje = '';

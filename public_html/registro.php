@@ -1,22 +1,32 @@
 <?php
-include "./includes/header.php";
+include "./includes/header_lite.php";
 require_once '../app/auth.php';
 
 $mensaje = '';
+$planes_validos = [1 => 'Básico', 2 => 'Pro', 3 => 'Premium'];
+$plan_id = isset($_GET['plan_id']) ? intval($_GET['plan_id']) : null;
+if (!isset($planes_validos[$plan_id])) {
+    $plan_id = null;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = trim($_POST['user-name'] ?? '');
-    $apellidos = trim($_POST['user-lastname'] ?? '');
-    $telefono = trim($_POST['user-phone'] ?? '');
-    $correo = trim($_POST['correo'] ?? '');
-    $contraseña = $_POST['contraseña'] ?? '';
-    $repetirContraseña = $_POST['repetir_contraseña'] ?? '';
-
-    $resultado = registrarUsuario($correo, $contraseña, $repetirContraseña, $nombre, $apellidos, $telefono);
-    if ($resultado === true) {
-        $mensaje = "Registro exitoso. <a href='login.php'>Inicia sesión</a>";
+    $plan_id = isset($_POST['plan_id']) ? intval($_POST['plan_id']) : $plan_id;
+    if (!isset($planes_validos[$plan_id])) {
+        $mensaje = 'Debes seleccionar un plan válido.';
     } else {
-        $mensaje = $resultado;
+        $nombre = trim($_POST['user-name'] ?? '');
+        $apellidos = trim($_POST['user-lastname'] ?? '');
+        $telefono = trim($_POST['user-phone'] ?? '');
+        $correo = trim($_POST['correo'] ?? '');
+        $contraseña = $_POST['contraseña'] ?? '';
+        $repetirContraseña = $_POST['repetir_contraseña'] ?? '';
+
+        $resultado = registrarUsuario($correo, $contraseña, $repetirContraseña, $nombre, $apellidos, $telefono, $plan_id);
+        if ($resultado === true) {
+            $mensaje = "Registro exitoso. <a href='login.php'>Inicia sesión</a>";
+        } else {
+            $mensaje = $resultado;
+        }
     }
 }
 ?>
@@ -39,6 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <input type="email" class="form-control mb-3" name="correo" placeholder="Correo electrónico" required>
                             <input type="password" class="form-control mb-3" name="contraseña" placeholder="Contraseña" required>
                             <input type="password" class="form-control mb-3" name="repetir_contraseña" placeholder="Confirmar Contraseña" required>
+                        <?php if ($plan_id !== null): ?>
+                            <input type="hidden" name="plan_id" value="<?= htmlspecialchars($plan_id) ?>">
+                            <div class="alert alert-secondary">Plan seleccionado: <strong><?= htmlspecialchars($planes_validos[$plan_id]) ?></strong></div>
+                        <?php else: ?>
+                            <div class="alert alert-warning">No se ha seleccionado un plan. Vuelve a elegir uno desde la página de planes.</div>
+                        <?php endif; ?>
                             <button type="submit" class="btn btn-dark w-100" id="submit-button">Registrarse</button>
                             <a href="signup_plan.php" class="btn btn-secondary w-100 mt-2" id="back-button">Volver</a>
                     </div>

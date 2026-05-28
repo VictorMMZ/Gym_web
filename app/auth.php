@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/db.php';
 
 // Función para registrar un usuario
-function registrarUsuario($correo, $contraseña, $repetirContraseña, $nombre, $apellidos, $telefono) {
+function registrarUsuario($correo, $contraseña, $repetirContraseña, $nombre, $apellidos, $telefono, $plan_id) {
     global $pdo;
 
     // Validar que las contraseñas coincidan
@@ -26,9 +26,9 @@ function registrarUsuario($correo, $contraseña, $repetirContraseña, $nombre, $
     // Hashear la contraseña
     $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT);
 
-    // Insertar el usuario
-    $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, apellidos, correo, telefono, contraseña, rol) VALUES (?, ?, ?, ?, ?, 'usuario')");
-    if ($stmt->execute([$nombre, $apellidos, $correo, $telefono, $hashedPassword])) {
+    // Insertar el usuario con el plan elegido
+    $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, apellidos, correo, telefono, contraseña, rol, id_plan) VALUES (?, ?, ?, ?, ?, 'usuario', ?)");
+    if ($stmt->execute([$nombre, $apellidos, $correo, $telefono, $hashedPassword, $plan_id])) {
         return true; // Registro exitoso
     } else {
         return "Error al registrar el usuario.";
@@ -39,7 +39,7 @@ function registrarUsuario($correo, $contraseña, $repetirContraseña, $nombre, $
 function iniciarSesion($correo, $contraseña) {
     global $pdo;
 
-    $stmt = $pdo->prepare("SELECT id_usuario, nombre, contraseña, rol FROM usuarios WHERE correo = ?");
+    $stmt = $pdo->prepare("SELECT id_usuario, nombre, contraseña, rol, id_plan FROM usuarios WHERE correo = ?");
     $stmt->execute([$correo]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -52,6 +52,7 @@ function iniciarSesion($correo, $contraseña) {
         $_SESSION['correo'] = $correo;
         $_SESSION['nombre'] = $user['nombre'];
         $_SESSION['rol'] = $user['rol'];
+        $_SESSION['id_plan'] = $user['id_plan'] ?? null; // Guardar el plan_id en la sesión
         return true;
     } else {
         return "Correo o contraseña incorrectos.";
