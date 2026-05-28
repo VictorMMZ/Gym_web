@@ -30,9 +30,7 @@
                 <div class="card-body">
                     <h5><?php echo htmlspecialchars($clase['nombre']); ?></h5>
                     <p class="text-muted"><?php echo htmlspecialchars($fecha); ?></p>
-                    <form action="cancelar_inscripcion.php" method="post">
-                        <input type="hidden" name="clase_id" value="<?php echo htmlspecialchars($clase['id_clase']); ?>">
-                        <button class="btn btn-danger w-100">Desapuntarme</button>
+                    <a href="cancelar_inscripcion.php?id_clase=<?php echo $clase['id_clase']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Quieres desapuntarte de esta clase?')">Desapuntarme</a>
                     </form>
                 </div>
             </div>
