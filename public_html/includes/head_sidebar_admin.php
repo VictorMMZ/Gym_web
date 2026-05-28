@@ -56,4 +56,5 @@
     <a href="admin_horarios.php">⏰ Horarios</a>
     <a href="facturacion.php">💵 Facturación</a>
     <a href="index.php">🚪 Cerrar sesión</a>
+    <a href="mensaje_usuarios.php">✉️ Mensajes de Usuarios</a>
 </div>

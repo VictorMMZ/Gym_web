@@ -1,3 +1,20 @@
+<?php 
+
+require_once __DIR__ . '/../config/db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nombre = trim($_POST['cf-name'] ?? '');
+        $correo = trim($_POST['cf-email'] ?? '');
+        $mensaje = trim($_POST['cf-message'] ?? '');
+      
+
+       $stmt = $pdo->prepare("INSERT INTO mensajes_usuarios (nombre_usuario, correo_usuario, mensaje) VALUES (?, ?, ?)");
+         $stmt->execute([$nombre, $correo, $mensaje]);
+        
+    }
+
+?>
+
 
 
 <!DOCTYPE html>
@@ -229,7 +246,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                     <div class="ml-auto col-lg-5 col-md-6 col-12">
                         <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">No dudes en preguntar lo que quieras</h2>
 
-                        <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
+                        <form method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
                             <input type="text" class="form-control" name="cf-name" placeholder="Nombre">
 
                             <input type="email" class="form-control" name="cf-email" placeholder="Correo electrónico">
