@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 
-     <title>Gymso Fitness HTML Template</title>
+     <title>Gymso Fitness - Gimnasio</title>
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -40,19 +40,19 @@ https://www.tooplate.com/view/2119-gymso-fitness
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link smoothScroll">Home</a>
+                        <a href="#home" class="nav-link smoothScroll">Inicio</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#schedule" class="nav-link smoothScroll">Schedules</a>
+                        <a href="#schedule" class="nav-link smoothScroll">Itinerario</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#contact" class="nav-link smoothScroll">Contact</a>
+                        <a href="#contact" class="nav-link smoothScroll">Contacto</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="login.php" class="nav-link smoothScroll">Login 👤</a>
+                        <a href="login.php" class="nav-link smoothScroll">Iniciar sesión 👤</a>
                     </li>
                 </ul>
 
@@ -78,13 +78,13 @@ https://www.tooplate.com/view/2119-gymso-fitness
                          <div class="col-lg-8 col-md-10 mx-auto col-12">
                               <div class="hero-text mt-5 text-center">
 
-                                    <h6 data-aos="fade-up" data-aos-delay="300">new way to build a healthy lifestyle!</h6>
+                                    <h6 data-aos="fade-up" data-aos-delay="300">¡Nueva forma de construir un estilo de vida saludable!</h6>
 
-                                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Upgrade your body at Gymso Fitness</h1>
+                                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Mejora tu cuerpo en Gymso Fitness</h1>
 
-                                    <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Get started</a>
+                                    
 
-                                    <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">learn more</a>
+                                    <a href="#feature" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">Comenzar</a>
                                    
                               </div>
                          </div>
@@ -99,28 +99,28 @@ https://www.tooplate.com/view/2119-gymso-fitness
             <div class="row">
 
                 <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
-                    <h2 class="mb-3 text-white" data-aos="fade-up">New to the gymso?</h2>
+                    <h2 class="mb-3 text-white" data-aos="fade-up">¿Nuevo en Gymso?</h2>
 
-                    <h6 class="mb-4 text-white" data-aos="fade-up">Your membership is up to 2 months FREE ($62.50 per month)</h6>
+                    <h6 class="mb-4 text-white" data-aos="fade-up">Tu membresía tiene hasta 2 meses GRATIS (29.99€ al mes)</h6>
 
-                    <p data-aos="fade-up" data-aos-delay="200">Gymso is free HTML template by <a rel="nofollow" href="https://www.tooplate.com" target="_parent">Tooplate</a> for your commercial website. Bootstrap v4.2.1 Layout. Feel free to use it.</p>
+                    <p data-aos="fade-up" data-aos-delay="200">Gymso es una plantilla HTML gratuita de <a rel="nofollow" href="https://www.tooplate.com" target="_parent">Tooplate</a> para tu sitio web comercial. Diseño con Bootstrap v4.2.1. Siéntete libre de usarla.</p>
 
-                    <a href="signup_plan.php" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-target="#membershipForm">Become a member today</a>
+                    <a href="signup_plan.php" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-target="#membershipForm">Hazte miembro hoy</a>
                 </div>
 
                 <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
                      <div class="about-working-hours">
                           <div>
 
-                                <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Working hours</h2>
+                                <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Horario de atención</h2>
 
-                               <strong class="d-block" data-aos="fade-up" data-aos-delay="600">Sunday : Closed</strong>
+                               <strong class="d-block" data-aos="fade-up" data-aos-delay="600">Domingo : Cerrado</strong>
 
-                               <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Monday - Friday</strong>
+                               <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Lunes - Viernes</strong>
 
                                 <p data-aos="fade-up" data-aos-delay="800">7:00 AM - 10:00 PM</p>
 
-                                <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Saturday</strong>
+                                <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Sábado</strong>
 
                                 <p data-aos="fade-up" data-aos-delay="800">6:00 AM - 4:00 PM</p>
                                </div>
@@ -139,115 +139,87 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
 
 
-     <!-- SCHEDULE -->
-     <section class="schedule section" id="schedule">
-               <div class="container">
-                    <div class="row">
+     <!-- Clases -->
+    
+<section class="schedule section" id="schedule">
+    <div class="container py-5">
+        <h2 class="mb-5" style="color: tomato;">Clases disponibles</h2>
 
-                            <div class="col-lg-12 col-12 text-center">
-                                <h6 data-aos="fade-up">our weekly GYM schedules</h6>
+        <div class="row">
 
-                                <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Workout Timetable</h2>
-                             </div>
+            <div class="col-md-4 mb-4"> <!-- MARGEN ENTRE CARDS -->
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">Yoga</h5>
+                    <p class="text-muted">Clase suave enfocada en estiramientos y relajación.</p>
+                </div>
+            </div>
 
-                             <div class="col-lg-12 py-5 col-md-12 col-12">
-                                 <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">Pilates</h5>
+                    <p class="text-muted">Fortalece el core y mejora la postura.</p>
+                </div>
+            </div>
 
-                                     <thead class="thead-light">
-                                         <th><i class="fa fa-calendar"></i></th>
-                                         <th>Mon</th>
-                                         <th>Tue</th>
-                                         <th>Wed</th>
-                                         <th>Thu</th>
-                                         <th>Fri</th>
-                                         <th>Sat</th>
-                                     </thead>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">Cycling</h5>
+                    <p class="text-muted">Entrenamiento intenso en bicicleta estática.</p>
+                </div>
+            </div>
 
-                                     <tbody>
-                                         <tr>
-                                            <td><small>7:00 am</small></td>
-                                            <td>
-                                                <strong>Cardio</strong>
-                                                <span>7:00 am - 9:00 am</span>
-                                            </td>
-                                            <td>
-                                                <strong>Power Fitness</strong>
-                                                <span>7:00 am - 9:00 am</span>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Yoga Section</strong>
-                                                <span>7:00 am - 9:00 am</span>
-                                            </td>
-                                         </tr>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">CrossFit</h5>
+                    <p class="text-muted">Ejercicios funcionales de alta intensidad.</p>
+                </div>
+            </div>
 
-                                         <tr>
-                                            <td><small>9:00 am</small></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Boxing</strong>
-                                                <span>8:00 am - 9:00 am</span>
-                                            </td>
-                                            <td>
-                                                <strong>Areobic</strong>
-                                                <span>8:00 am - 9:00 am</span>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Cardio</strong>
-                                                <span>8:00 am - 9:00 am</span>
-                                            </td>
-                                         </tr>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">Funcional</h5>
+                    <p class="text-muted">Movimientos globales para mejorar fuerza y movilidad.</p>
+                </div>
+            </div>
 
-                                         <tr>
-                                            <td><small>11:00 am</small></td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Boxing</strong>
-                                                <span>11:00 am - 2:00 pm</span>
-                                            </td>
-                                            <td>
-                                                <strong>Areobic</strong>
-                                                <span>11:30 am - 3:30 pm</span>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Body work</strong>
-                                                <span>11:50 am - 5:20 pm</span>
-                                            </td>
-                                         </tr>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">Zumba</h5>
+                    <p class="text-muted">Clase divertida basada en baile y cardio.</p>
+                </div>
+            </div>
 
-                                         <tr>
-                                            <td><small>2:00 pm</small></td>
-                                            <td>
-                                                <strong>Boxing</strong>
-                                                <span>2:00 pm - 4:00 pm</span>
-                                            </td>
-                                            <td>
-                                                <strong>Power lifting</strong>
-                                                <span>3:00 pm - 6:00 pm</span>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Cardio</strong>
-                                                <span>6:00 pm - 9:00 pm</span>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Crossfit</strong>
-                                                <span>5:00 pm - 7:00 pm</span>
-                                            </td>
-                                         </tr>
-                                     </tbody>
-                                 </table>
-                             </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">Body Pump</h5>
+                    <p class="text-muted">Entrenamiento con pesas al ritmo de la música.</p>
+                </div>
+            </div>
 
-                    </div>
-               </div>
-     </section>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">HIIT</h5>
+                    <p class="text-muted">Intervalos cortos e intensos para quemar grasa.</p>
+                </div>
+            </div>
 
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">Boxeo</h5>
+                    <p class="text-muted">Técnica, cardio y fuerza en una sola clase.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3">
+                    <h5 class="mb-3">Estiramientos</h5>
+                    <p class="text-muted">Mejora la flexibilidad y reduce tensiones.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
      <!-- CONTACT -->
      <section class="contact section" id="contact">
@@ -255,21 +227,21 @@ https://www.tooplate.com/view/2119-gymso-fitness
                <div class="row">
 
                     <div class="ml-auto col-lg-5 col-md-6 col-12">
-                        <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Feel free to ask anything</h2>
+                        <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">No dudes en preguntar lo que quieras</h2>
 
                         <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
-                            <input type="text" class="form-control" name="cf-name" placeholder="Name">
+                            <input type="text" class="form-control" name="cf-name" placeholder="Nombre">
 
-                            <input type="email" class="form-control" name="cf-email" placeholder="Email">
+                            <input type="email" class="form-control" name="cf-email" placeholder="Correo electrónico">
 
-                            <textarea class="form-control" rows="5" name="cf-message" placeholder="Message"></textarea>
+                            <textarea class="form-control" rows="5" name="cf-message" placeholder="Mensaje"></textarea>
 
-                            <button type="submit" class="form-control" id="submit-button" name="submit">Send Message</button>
+                            <button type="submit" class="form-control" id="submit-button" name="submit">Enviar mensaje</button>
                         </form>
                     </div>
 
                     <div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
-                        <h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">Where you can <span>find us</span></h2>
+                        <h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">¿Dónde puedes <span>encontrarnos?</span></h2>
 
                         <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i> 120-240 Rio de Janeiro - State of Rio de Janeiro, Brazil</p>
 <!-- How to change your own map point
