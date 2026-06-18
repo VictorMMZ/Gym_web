@@ -13,6 +13,27 @@ try {
     ";
     $pdo->exec($sqlGimnasio);
 
+    // Crear tabla planes
+    $sqlPlanes = "
+    CREATE TABLE IF NOT EXISTS planes (
+        id_plan INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(50) NOT NULL,
+        precio DECIMAL(10,2) NOT NULL
+        
+    ) ENGINE=InnoDB;
+    ";
+    $pdo->exec($sqlPlanes);
+
+    // Insertar planes base si la tabla está vacía
+    $stmtPlanes = $pdo->prepare("SELECT COUNT(*) FROM planes");
+    $stmtPlanes->execute();
+    if ($stmtPlanes->fetchColumn() == 0) {
+        $pdo->exec("INSERT INTO planes (id_plan, nombre, precio) VALUES
+            (1, 'Básico', 29.99),
+            (2, 'Pro', 49.99),
+            (3, 'Premium', 79.99)");
+    }
+
     // Crear tabla usuarios
     $sqlUsers = "
     CREATE TABLE IF NOT EXISTS usuarios (
@@ -23,8 +44,11 @@ try {
         telefono VARCHAR(20),
         contraseña VARCHAR(255) NOT NULL,
         rol ENUM('admin', 'usuario', 'entrenador') DEFAULT 'usuario',
+        id_plan INT NULL,
         fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        INDEX idx_correo (correo)
+        FOREIGN KEY (id_plan) REFERENCES planes(id_plan) ON DELETE SET NULL,
+        INDEX idx_correo (correo),
+        INDEX idx_id_plan (id_plan)
     ) ENGINE=InnoDB;
     ";
     $pdo->exec($sqlUsers);
@@ -60,6 +84,32 @@ try {
     ) ENGINE=InnoDB;
     ";
     $pdo->exec($sqlInscripciones);
+
+    // Crear tabla facturación
+    $sqlFacturacion = "
+    CREATE TABLE IF NOT EXISTS facturacion (
+        id_facturacion INT AUTO_INCREMENT PRIMARY KEY,
+        id_usuario INT NOT NULL,
+        id_plan INT NULL,
+        facturado TINYINT(1) DEFAULT 0,
+        fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UNIQUE KEY unique_usuario_facturacion (id_usuario),
+        INDEX idx_facturado (facturado)
+    ) ENGINE=InnoDB;
+    ";
+    $pdo->exec($sqlFacturacion);
+
+    // Crear tabla mensajes de usuarios
+    $sqlMensajes = "
+    CREATE TABLE IF NOT EXISTS mensajes_usuarios (
+        id_mensaje INT AUTO_INCREMENT PRIMARY KEY,
+        nombre_usuario VARCHAR(100) NOT NULL,
+        correo_usuario VARCHAR(150) NOT NULL,
+        mensaje TEXT NOT NULL,
+        fecha_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB;
+    ";
+    $pdo->exec($sqlMensajes);
 
     // Insertar datos de ejemplo en gimnasio
     $stmt = $pdo->prepare("SELECT id_gimnasio FROM gimnasio LIMIT 1");
