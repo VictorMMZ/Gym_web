@@ -1,9 +1,9 @@
 <?php
-// Script para configurar la base de datos (asume que gym_web ya existe)
+// setup.php: crea las tablas necesarias y datos iniciales de Gym_Web
 require_once 'db.php';
 
 try {
-    // Crear tabla gimnasio
+    // Crear tabla gimnasio si no existe
     $sqlGimnasio = "
     CREATE TABLE IF NOT EXISTS gimnasio (
         id_gimnasio INT AUTO_INCREMENT PRIMARY KEY,
@@ -13,28 +13,27 @@ try {
     ";
     $pdo->exec($sqlGimnasio);
 
-    // Crear tabla planes
+    // Crear tabla planes si no existe
     $sqlPlanes = "
     CREATE TABLE IF NOT EXISTS planes (
         id_plan INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50) NOT NULL,
         precio DECIMAL(10,2) NOT NULL
-        
     ) ENGINE=InnoDB;
     ";
     $pdo->exec($sqlPlanes);
 
-    // Insertar planes base si la tabla está vacía
+    // Insertar planes básicos si no hay datos en la tabla
     $stmtPlanes = $pdo->prepare("SELECT COUNT(*) FROM planes");
     $stmtPlanes->execute();
     if ($stmtPlanes->fetchColumn() == 0) {
         $pdo->exec("INSERT INTO planes (id_plan, nombre, precio) VALUES
             (1, 'Básico', 29.99),
-            (2, 'Pro', 49.99),
-            (3, 'Premium', 79.99)");
+            (2, 'Pro', 32.99),
+            (3, 'Premium', 35.99)");
     }
 
-    // Crear tabla usuarios
+    // Crear tabla usuarios si no existe
     $sqlUsers = "
     CREATE TABLE IF NOT EXISTS usuarios (
         id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,7 +52,7 @@ try {
     ";
     $pdo->exec($sqlUsers);
 
-    // Crear tabla clases
+    // Crear tabla clases si no existe
     $sqlClases = "
     CREATE TABLE IF NOT EXISTS clases (
         id_clase INT AUTO_INCREMENT PRIMARY KEY,
@@ -69,7 +68,7 @@ try {
     ";
     $pdo->exec($sqlClases);
 
-    // Crear tabla inscripciones
+    // Crear tabla inscripciones si no existe
     $sqlInscripciones = "
     CREATE TABLE IF NOT EXISTS inscripciones (
         id_inscripcion INT AUTO_INCREMENT PRIMARY KEY,
@@ -85,7 +84,7 @@ try {
     ";
     $pdo->exec($sqlInscripciones);
 
-    // Crear tabla facturación
+    // Crear tabla facturación si no existe
     $sqlFacturacion = "
     CREATE TABLE IF NOT EXISTS facturacion (
         id_facturacion INT AUTO_INCREMENT PRIMARY KEY,
@@ -99,7 +98,7 @@ try {
     ";
     $pdo->exec($sqlFacturacion);
 
-    // Crear tabla mensajes de usuarios
+    // Crear tabla mensajes de usuarios si no existe
     $sqlMensajes = "
     CREATE TABLE IF NOT EXISTS mensajes_usuarios (
         id_mensaje INT AUTO_INCREMENT PRIMARY KEY,
@@ -111,25 +110,14 @@ try {
     ";
     $pdo->exec($sqlMensajes);
 
-    // Insertar datos de ejemplo en gimnasio
+    // Insertar datos de ejemplo del gimnasio si falta el registro
     $stmt = $pdo->prepare("SELECT id_gimnasio FROM gimnasio LIMIT 1");
     $stmt->execute();
     if (!$stmt->fetch()) {
         $pdo->exec("INSERT INTO gimnasio (nombre, horario) VALUES ('Gym Web', 'Lun-Vie 06:00-22:00')");
     }
 
-    // Insertar usuario admin por defecto si no existe (contraseña: admin123)
-    $stmt = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE correo = 'admin@gymweb.com'");
-    $stmt->execute();
-    if (!$stmt->fetch()) {
-        $hashedPassword = password_hash('admin123', PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, apellidos, correo, telefono, contraseña, rol) VALUES ('Administrador', '', 'admin@gymweb.com', '123456789', ?, 'admin')");
-        $stmt->execute([$hashedPassword]);
-        echo "Usuario admin creado. Correo: admin@gymweb.com, Contraseña: admin123<br>";
-    }
-
-   // echo "Base de datos configurada correctamente con tablas: gimnasio, users, clases, inscripciones.";
 } catch (PDOException $e) {
-   // echo "Error: " . $e->getMessage();
+    // Error en la creación de tablas: en producción no se muestra el mensaje completo
 }
 ?>

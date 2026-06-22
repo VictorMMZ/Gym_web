@@ -1,7 +1,8 @@
- 
- <?php
+<?php
+// head_sidebar_user.php: plantilla de cabecera y menú lateral para usuarios autenticados
 require_once '../../app/auth.php';
 
+// Control de acceso: solo usuarios con rol 'usuario' pueden ver estas páginas
 if (!estaLogueado() || obtenerRol() !== 'usuario') {
     header("Location: ../login.php");
     exit;
@@ -18,9 +19,6 @@ if (!estaLogueado() || obtenerRol() !== 'usuario') {
      <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
      <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
      <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-     
-
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="../assets/css/tooplate-gymso-style.css">

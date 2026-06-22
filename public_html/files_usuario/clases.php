@@ -47,9 +47,7 @@
         </div>
     <?php endforeach; ?>
 
-   <?php if(count($clases) == 0): ?>
-        <p>No hay clases disponibles en este momento.</p>
-     <?php endif; ?>
+   
     </div>
 </div>
 

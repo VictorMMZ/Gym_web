@@ -1,4 +1,5 @@
 <?php
+// login.php: formulario de acceso e inicio de sesión para usuarios y admins
 include "./includes/header_lite.php";
 require_once '../app/auth.php';
 
@@ -8,9 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo = trim($_POST['correo'] ?? '');
     $contraseña = $_POST['contraseña'] ?? '';
 
+    // Intentar iniciar sesión con las credenciales recibidas
     $resultado = iniciarSesion($correo, $contraseña);
     if ($resultado === true) {
-        // Redirigir según el rol
+        // Redirigir en función del rol guardado en sesión
         $rol = obtenerRol();
         if ($rol === 'usuario') {
             header("Location: ./files_usuario/dashboard_usuario.php");

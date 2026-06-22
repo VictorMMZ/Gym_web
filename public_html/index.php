@@ -1,17 +1,15 @@
 <?php 
-
+// index.php: página pública principal y formulario de contacto para enviar mensajes a la base de datos
 require_once __DIR__ . '/../config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $nombre = trim($_POST['cf-name'] ?? '');
-        $correo = trim($_POST['cf-email'] ?? '');
-        $mensaje = trim($_POST['cf-message'] ?? '');
-      
+    $nombre = trim($_POST['cf-name'] ?? '');
+    $correo = trim($_POST['cf-email'] ?? '');
+    $mensaje = trim($_POST['cf-message'] ?? '');
 
-       $stmt = $pdo->prepare("INSERT INTO mensajes_usuarios (nombre_usuario, correo_usuario, mensaje) VALUES (?, ?, ?)");
-         $stmt->execute([$nombre, $correo, $mensaje]);
-        
-    }
+    $stmt = $pdo->prepare("INSERT INTO mensajes_usuarios (nombre_usuario, correo_usuario, mensaje) VALUES (?, ?, ?)");
+    $stmt->execute([$nombre, $correo, $mensaje]);
+}
 
 ?>
 
@@ -61,7 +59,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                     </li>
 
                     <li class="nav-item">
-                        <a href="#schedule" class="nav-link smoothScroll">Itinerario</a>
+                        <a href="#schedule" class="nav-link smoothScroll">Clases</a>
                     </li>
 
                     <li class="nav-item">
@@ -69,7 +67,11 @@ https://www.tooplate.com/view/2119-gymso-fitness
                     </li>
 
                     <li class="nav-item">
-                        <a href="login.php" class="nav-link smoothScroll">Iniciar sesión 👤</a>
+                        <a href="login.php" class="nav-link smoothScroll">Iniciar Sesión </a>
+                    </li>
+
+                     <li class="nav-item">
+                        <a href="signup_plan.php" class="nav-link smoothScroll">Registrarse </a>
                     </li>
                 </ul>
 

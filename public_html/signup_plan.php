@@ -30,6 +30,9 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
             <a class="navbar-brand" href="index.php">Gymso Fitness</a>
 
+            <!-- Página de selección de planes para el registro de nuevos usuarios -->
+            <!-- Cada botón envía al registro con plan_id correspondiente -->
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

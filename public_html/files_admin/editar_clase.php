@@ -1,4 +1,5 @@
 <?php
+// editar_clase.php: formulario para modificar una clase existente
 include '../includes/head_sidebar_admin.php';
 require_once '../../app/ClaseHelper.php';
 
@@ -26,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($claseHelper->actualizarClase($id_clase, $id_gimnasio, $nombre, $descripcion, $fecha_hora, $capacidad)) {
         $mensaje = "Clase actualizada exitosamente.";
-        $clase = $claseHelper->obtenerClasePorId($id_clase); // Recargar datos
+        $clase = $claseHelper->obtenerClasePorId($id_clase); // Recargar datos actualizados
     } else {
         $mensaje = "Error al actualizar clase.";
     }
@@ -62,6 +63,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php
 include '../includes/scripts.php';
 ?>
-    
 </body>
 </html>

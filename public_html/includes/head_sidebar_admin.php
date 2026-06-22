@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    
-  
-     <!-- MAIN CSS -->
-     <link rel="stylesheet" href="../assets/css/tooplate-gymso-style.css">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="../assets/css/tooplate-gymso-style.css">
     <style>
         .sidebar {
             width: 220px;
@@ -44,7 +43,6 @@
     </style>
 </head>
 
-
 <body>
 
 <div class="sidebar">
@@ -55,6 +53,6 @@
     <a href="admin_usuarios.php">👥 Gestionar usuarios</a>
     <a href="admin_horarios.php">⏰ Horarios</a>
     <a href="facturacion.php">💵 Facturación</a>
-    <a href="index.php">🚪 Cerrar sesión</a>
     <a href="mensaje_usuarios.php">✉️ Mensajes de Usuarios</a>
+    <a href="index.php">🚪 Cerrar sesión</a>
 </div>

@@ -1,4 +1,5 @@
 <?php
+// admin_clase.php: vista del administrador para listar todas las clases y ofertas disponibles
 include '../includes/head_sidebar_admin.php';
 require_once '../../app/ClaseHelper.php';
 

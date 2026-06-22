@@ -1,4 +1,5 @@
 <?php
+// crear_clase.php: formulario para que un administrador agregue una nueva clase
 include '../includes/head_sidebar_admin.php';
 require_once '../../app/ClaseHelper.php';
 
@@ -6,7 +7,8 @@ $claseHelper = new ClaseHelper();
 $mensaje = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id_gimnasio = 1; // Asumir gimnasio 1
+    // Datos recibidos desde el formulario de creación de clase
+    $id_gimnasio = 1; // Asumimos que solo hay un gimnasio
     $nombre = trim($_POST['nombre']);
     $descripcion = trim($_POST['descripcion']);
     $fecha_hora = str_replace('T', ' ', $_POST['fecha_hora']);
@@ -46,9 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 </div>
 <?php
-   
      include '../includes/scripts.php';
-
-    ?>
+?>
 </body>
 </html>

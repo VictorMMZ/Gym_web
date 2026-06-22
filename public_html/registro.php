@@ -1,4 +1,5 @@
 <?php
+// registro.php: pantalla para crear un usuario con un plan seleccionado
 include "./includes/header_lite.php";
 require_once '../app/auth.php';
 
@@ -22,11 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $contraseña = $_POST['contraseña'] ?? '';
         $repetirContraseña = $_POST['repetir_contraseña'] ?? '';
 
+        // Intentar registrar el usuario en la base de datos
         $resultado = registrarUsuario($correo, $contraseña, $repetirContraseña, $nombre, $apellidos, $telefono, $plan_id);
         if ($resultado['ok'] === true) {
-                header("Location: login.php");
+            header("Location: login.php");
             exit;
-        }else {
+        } else {
             $errors = $resultado['errors'] ?? [];
         }
     }

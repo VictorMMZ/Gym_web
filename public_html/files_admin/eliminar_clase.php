@@ -1,4 +1,5 @@
 <?php
+// eliminar_clase.php: acción de eliminación de clase por parte del administrador
 require_once '../../app/ClaseHelper.php';
 
 $claseHelper = new ClaseHelper();
