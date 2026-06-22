@@ -28,9 +28,9 @@ class UsuariosHelper {
     }
 
     // Actualizar los datos de un usuario existente
-    public function actualizarUsuario($id_usuario, $nombre, $apellidos, $correo, $telefono, $contraseña, $rol, $fecha_registro, $id_plan) {
-        $stmt = $this->pdo->prepare("UPDATE usuarios SET nombre = ?, apellidos = ?, correo = ?, telefono = ?, contraseña = ?, rol = ?, fecha_registro = ?, id_plan = ? WHERE id_usuario = ?");
-        return $stmt->execute([$nombre, $apellidos, $correo, $telefono, $contraseña, $rol, $fecha_registro, $id_plan, $id_usuario]);
+    public function actualizarUsuario( $id_usuario, $nombre, $apellidos, $correo, $telefono, $id_plan) {
+        $stmt = $this->pdo->prepare("UPDATE usuarios SET nombre = ?, apellidos = ?, correo = ?, telefono = ?, id_plan = ? WHERE id_usuario = ?");
+        return $stmt->execute([$nombre, $apellidos, $correo, $telefono, $id_plan, $id_usuario]);
     }
 
     // Eliminar usuario por id
