@@ -33,6 +33,7 @@ require_once '../../config/db.php';
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Mensaje</th>
+                <th>Fecha de Envío</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +42,7 @@ require_once '../../config/db.php';
                     <td><?= htmlspecialchars($m['nombre_usuario']) ?></td>
                     <td><?= htmlspecialchars($m['correo_usuario']) ?></td>
                     <td><?= nl2br(htmlspecialchars($m['mensaje'])) ?></td>
+                    <td><?= htmlspecialchars($m['fecha_envio']) ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
