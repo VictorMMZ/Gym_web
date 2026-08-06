@@ -1,53 +1,54 @@
 <?php
-    include '../includes/head_sidebar_user.php';
- 
-    require_once '../../app/ClaseHelper.php';
-    require_once '../../app/auth.php';
+include '../includes/head_sidebar_user.php';
 
-    if (!estaLogueado() || obtenerRol() !== 'usuario') {
-        header("Location: ../../login.php");
-        exit;
-    }
+require_once '../../app/ClaseHelper.php';
+require_once '../../app/auth.php';
 
-    $claseHelper = new ClaseHelper();
-    $id_usuario = $_SESSION['user_id'];
-    $clases = $claseHelper->obtenerClases();
-    $inscritas = $claseHelper->obtenerClasesUsuario($id_usuario);
-    $ids_inscritas = array_column($inscritas, 'id_clase');
+if (!estaLogueado() || obtenerRol() !== 'usuario') {
+    header("Location: ../../login.php");
+    exit;
+}
+
+$claseHelper = new ClaseHelper();
+$id_usuario = $_SESSION['user_id'];
+$clases = $claseHelper->obtenerClases();
+$inscritas = $claseHelper->obtenerClasesUsuario($id_usuario);
+$ids_inscritas = array_column($inscritas, 'id_clase');
 ?>
 <div class=" planes content">
     <h2 class="mb-4" style="color:tomato">Mis clases</h2>
 
     <div class="row g-4" data-aos="fade-up" data-aos-delay="200">
-            <?php foreach ($clases as $clase):
-                // Mostrar solo clases inscritas
-                if (!in_array($clase['id_clase'], $ids_inscritas)) continue;
-                $fecha = date('l d/m H:i', strtotime($clase['fecha_hora']));
-            ?>
-        <!-- CARD -->
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5><?php echo htmlspecialchars($clase['nombre']); ?></h5>
-                    <p class="text-muted"><?php echo htmlspecialchars($fecha); ?></p>
-                    <a href="cancelar_inscripcion.php?id_clase=<?php echo $clase['id_clase']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Quieres desapuntarte de esta clase?')">Desapuntarme</a>
-                    </form>
+        <?php foreach ($clases as $clase):
+            // Mostrar solo clases inscritas
+            if (!in_array($clase['id_clase'], $ids_inscritas)) continue;
+            $fecha = date('l d/m H:i', strtotime($clase['fecha_hora']));
+        ?>
+            <!-- CARD -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5><?php echo htmlspecialchars($clase['nombre']); ?></h5>
+                        <p class="text-muted"><?php echo htmlspecialchars($fecha); ?></p>
+                        <a href="cancelar_inscripcion.php?id_clase=<?php echo $clase['id_clase']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Quieres desapuntarte de esta clase?')">Desapuntarme</a>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
         <?php endforeach; ?>
 
 
-        <?php if(count($inscritas) == 0): ?>
+        <?php if (count($inscritas) == 0): ?>
             <h3 style="color: tomato;">No estás inscrito en ninguna clase.</h3>
         <?php endif; ?>
     </div>
 </div>
-   <?php
-   
-    include '../includes/scripts.php';
+<?php
 
-    ?>
+include '../includes/scripts.php';
+
+?>
 </body>
+
 </html>

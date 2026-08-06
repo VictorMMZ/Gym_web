@@ -1,58 +1,58 @@
 <?php
-    include '../includes/head_sidebar_user.php';
-    require_once '../../app/ClaseHelper.php';
-    require_once '../../app/auth.php';
+include '../includes/head_sidebar_user.php';
+require_once '../../app/ClaseHelper.php';
+require_once '../../app/auth.php';
 
-    if (!estaLogueado() || obtenerRol() !== 'usuario') {
-        header("Location: ../../login.php");
-        exit;
-    }
+if (!estaLogueado() || obtenerRol() !== 'usuario') {
+    header("Location: ../../login.php");
+    exit;
+}
 
-    $claseHelper = new ClaseHelper();
-    $id_usuario = $_SESSION['user_id'];
-    $clases_inscritas = $claseHelper->obtenerClasesUsuario($id_usuario);
-    $clases_disponibles = $claseHelper->obtenerClases(); // Todas las clases, filtrar las no inscritas
-    // Filtrar clases: solo hoy o días posteriores
+$claseHelper = new ClaseHelper();
+$id_usuario = $_SESSION['user_id'];
+$clases_inscritas = $claseHelper->obtenerClasesUsuario($id_usuario);
+$clases_disponibles = $claseHelper->obtenerClases(); // Todas las clases, filtrar las no inscritas
+// Filtrar clases: solo hoy o días posteriores
 $hoy = strtotime(date('Y-m-d')); // Hoy a las 00:00
 
-$clases_disponibles = array_filter($clases_disponibles, function($c) use ($hoy) {
+$clases_disponibles = array_filter($clases_disponibles, function ($c) use ($hoy) {
     $fechaClase = strtotime(date('Y-m-d', strtotime($c['fecha_hora'])));
     return $fechaClase >= $hoy;
 });
 
 
-    // Filtrar clases disponibles (no inscritas)
-    $ids_inscritas = array_column($clases_inscritas, 'id_clase');
-    $clases_disponibles = array_filter($clases_disponibles, function($clase) use ($ids_inscritas) {
-        return !in_array($clase['id_clase'], $ids_inscritas);
-    });
+// Filtrar clases disponibles (no inscritas)
+$ids_inscritas = array_column($clases_inscritas, 'id_clase');
+$clases_disponibles = array_filter($clases_disponibles, function ($clase) use ($ids_inscritas) {
+    return !in_array($clase['id_clase'], $ids_inscritas);
+});
 
-    $mensaje = $_GET['mensaje'] ?? '';
+$mensaje = $_GET['mensaje'] ?? '';
 
-    
-    // Obtener métricas del usuario desde la BD
-    global $pdo;
-    try {
-        $user_stmt = $pdo->prepare("SELECT nombre, rol FROM usuarios WHERE id_usuario = ?");
-        $user_stmt->execute([$id_usuario]);
-        $user_data = $user_stmt->fetch(PDO::FETCH_ASSOC);
-        $membresia_tipo = $user_data['rol'] ?? 'Standard';
 
-        $clases_mes_stmt = $pdo->prepare("SELECT COUNT(*) FROM inscripciones i JOIN clases c ON i.id_clase = c.id_clase WHERE i.id_usuario = ? AND i.estado = 'finalizado' AND MONTH(c.fecha_hora) = MONTH(CURRENT_DATE()) AND YEAR(c.fecha_hora) = YEAR(CURRENT_DATE())");
-        $clases_mes_stmt->execute([$id_usuario]);
-        $clases_mes = $clases_mes_stmt->fetchColumn();
+// Obtener métricas del usuario desde la BD
+global $pdo;
+try {
+    $user_stmt = $pdo->prepare("SELECT nombre, rol FROM usuarios WHERE id_usuario = ?");
+    $user_stmt->execute([$id_usuario]);
+    $user_data = $user_stmt->fetch(PDO::FETCH_ASSOC);
+    $membresia_tipo = $user_data['rol'] ?? 'Standard';
 
-        $clases_total_stmt = $pdo->prepare("SELECT COUNT(*) FROM inscripciones WHERE id_usuario = ? AND estado = 'finalizado'");
-        $clases_total_stmt->execute([$id_usuario]);
-        $clases_total = $clases_total_stmt->fetchColumn();
-    } catch (Exception $e) {
-        $membresia_tipo = 'Standard';
-        $clases_mes = 0;
-        $clases_total = 0;
-    }
- ?>
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="planes content">
+    $clases_mes_stmt = $pdo->prepare("SELECT COUNT(*) FROM inscripciones i JOIN clases c ON i.id_clase = c.id_clase WHERE i.id_usuario = ? AND i.estado = 'finalizado' AND MONTH(c.fecha_hora) = MONTH(CURRENT_DATE()) AND YEAR(c.fecha_hora) = YEAR(CURRENT_DATE())");
+    $clases_mes_stmt->execute([$id_usuario]);
+    $clases_mes = $clases_mes_stmt->fetchColumn();
+
+    $clases_total_stmt = $pdo->prepare("SELECT COUNT(*) FROM inscripciones WHERE id_usuario = ? AND estado = 'finalizado'");
+    $clases_total_stmt->execute([$id_usuario]);
+    $clases_total = $clases_total_stmt->fetchColumn();
+} catch (Exception $e) {
+    $membresia_tipo = 'Standard';
+    $clases_mes = 0;
+    $clases_total = 0;
+}
+?>
+<!-- CONTENIDO PRINCIPAL -->
+<div class="planes content">
     <h2 class="mb-4" style="color:tomato">Dashboard</h2>
 
     <?php if ($mensaje): ?>
@@ -65,10 +65,10 @@ $clases_disponibles = array_filter($clases_disponibles, function($c) use ($hoy) 
         <div class="col-md-6">
             <div class="card shadow-sm">
                 <div class="card-body">
-                            <h5>Membresía actual</h5>
-                            <p class="text-muted">Tipo: <strong><?php echo htmlspecialchars($membresia_tipo); ?></strong></p>
-                            <p class="text-muted">Renovación: <strong>Gestionar en perfil</strong></p>
-                        </div>
+                    <h5>Membresía actual</h5>
+                    <p class="text-muted">Tipo: <strong><?php echo htmlspecialchars($membresia_tipo); ?></strong></p>
+                    <p class="text-muted">Renovación: <strong>Gestionar en perfil</strong></p>
+                </div>
             </div>
         </div>
 
@@ -117,7 +117,7 @@ $clases_disponibles = array_filter($clases_disponibles, function($c) use ($hoy) 
                 <p>No hay clases disponibles.</p>
             <?php else: ?>
                 <?php foreach ($clases_disponibles as $clase): ?>
-                    
+
                     <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
                         <div>
                             <strong><?php echo htmlspecialchars($clase['nombre']); ?></strong><br>
@@ -135,22 +135,22 @@ $clases_disponibles = array_filter($clases_disponibles, function($c) use ($hoy) 
     </div>
 
     <?php
-        
-        // Mostrar próximas 3 clases disponibles (no inscritas)
-        $ids_inscritas = array_column($clases_inscritas, 'id_clase');
-        $proximas = array_filter($clases_disponibles, function($c) use ($ids_inscritas) {
-            return strtotime($c['fecha_hora']) > time() && !in_array($c['id_clase'], $ids_inscritas);
-        });
-        $proximas = array_slice(array_values($proximas), 0, 3);
-        
-        foreach ($proximas as $p):
-            $fecha = date('d/m/Y H:i', strtotime($p['fecha_hora']));
-            $dias = ceil((strtotime($p['fecha_hora']) - time()) / 86400);
+
+    // Mostrar próximas 3 clases disponibles (no inscritas)
+    $ids_inscritas = array_column($clases_inscritas, 'id_clase');
+    $proximas = array_filter($clases_disponibles, function ($c) use ($ids_inscritas) {
+        return strtotime($c['fecha_hora']) > time() && !in_array($c['id_clase'], $ids_inscritas);
+    });
+    $proximas = array_slice(array_values($proximas), 0, 3);
+
+    foreach ($proximas as $p):
+        $fecha = date('d/m/Y H:i', strtotime($p['fecha_hora']));
+        $dias = ceil((strtotime($p['fecha_hora']) - time()) / 86400);
     ?>
-        
+
     <?php endforeach; ?>
 
-    </div>
+</div>
 </div>
 
 
@@ -171,33 +171,33 @@ $clases_disponibles = array_filter($clases_disponibles, function($c) use ($hoy) 
             </thead>
             <tbody>
                 <?php
-                    // Obtener las últimas 3 clases pasadas del usuario
-                    try {
-                        $hist_stmt = $pdo->prepare("SELECT c.nombre, c.fecha_hora, i.estado FROM inscripciones i JOIN clases c ON i.id_clase = c.id_clase WHERE i.id_usuario = ? AND i.estado IN ('finalizado','cancelada') AND c.fecha_hora < NOW() ORDER BY c.fecha_hora DESC LIMIT 3");
-                        $hist_stmt->execute([$id_usuario]);
-                        $hist = $hist_stmt->fetchAll(PDO::FETCH_ASSOC);
-                    } catch (Exception $e) {
-                        $hist = [];
-                    }
+                // Obtener las últimas 3 clases pasadas del usuario
+                try {
+                    $hist_stmt = $pdo->prepare("SELECT c.nombre, c.fecha_hora, i.estado FROM inscripciones i JOIN clases c ON i.id_clase = c.id_clase WHERE i.id_usuario = ? AND i.estado IN ('finalizado','cancelada') AND c.fecha_hora < NOW() ORDER BY c.fecha_hora DESC LIMIT 3");
+                    $hist_stmt->execute([$id_usuario]);
+                    $hist = $hist_stmt->fetchAll(PDO::FETCH_ASSOC);
+                } catch (Exception $e) {
+                    $hist = [];
+                }
 
-                    if (empty($hist)) {
-                        echo '<tr><td colspan="3">No hay historial reciente.</td></tr>';
-                    } else {
-                        foreach ($hist as $h) {
-                            if ($h['estado'] === 'finalizado') {
-                                $estado = '<span class="badge bg-success">Finalizado</span>';
-                            } elseif ($h['estado'] === 'cancelada') {
-                                $estado = '<span class="badge bg-danger">Cancelada</span>';
-                            } else {
-                                $estado = '<span class="badge bg-secondary">' . htmlspecialchars($h['estado']) . '</span>';
-                            }
-                            echo '<tr>';
-                            echo '<td>' . htmlspecialchars($h['nombre']) . '</td>';
-                            echo '<td>' . htmlspecialchars(date('d/m/Y', strtotime($h['fecha_hora']))) . '</td>';
-                            echo '<td>' . $estado . '</td>';
-                            echo '</tr>';
+                if (empty($hist)) {
+                    echo '<tr><td colspan="3">No hay historial reciente.</td></tr>';
+                } else {
+                    foreach ($hist as $h) {
+                        if ($h['estado'] === 'finalizado') {
+                            $estado = '<span class="badge bg-success">Finalizado</span>';
+                        } elseif ($h['estado'] === 'cancelada') {
+                            $estado = '<span class="badge bg-danger">Cancelada</span>';
+                        } else {
+                            $estado = '<span class="badge bg-secondary">' . htmlspecialchars($h['estado']) . '</span>';
                         }
+                        echo '<tr>';
+                        echo '<td>' . htmlspecialchars($h['nombre']) . '</td>';
+                        echo '<td>' . htmlspecialchars(date('d/m/Y', strtotime($h['fecha_hora']))) . '</td>';
+                        echo '<td>' . $estado . '</td>';
+                        echo '</tr>';
                     }
+                }
                 ?>
             </tbody>
         </table>
@@ -206,9 +206,10 @@ $clases_disponibles = array_filter($clases_disponibles, function($c) use ($hoy) 
 </div>
 </div>
 <?php
-   
-    include '../includes/scripts.php'
 
-    ?>
+include '../includes/scripts.php'
+
+?>
 </body>
+
 </html>

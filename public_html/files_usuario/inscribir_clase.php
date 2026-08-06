@@ -30,4 +30,3 @@ if ($resultado === true) {
     header("Location: dashboard_usuario.php?mensaje=" . urlencode($resultado));
 }
 exit;
-?>
