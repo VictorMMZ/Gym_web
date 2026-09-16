@@ -1,6 +1,11 @@
 <?php 
 // index.php: página pública principal y formulario de contacto para enviar mensajes a la base de datos
 require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../app/HorarioHelper.php';
+
+$horarioHelper = new HorarioHelper();
+$horaApertura = $horarioHelper->obtenerHoraApertura();
+$horaCierre = $horarioHelper->obtenerHoraCierre();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['cf-name'] ?? '');
@@ -137,7 +142,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
                                <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Lunes - Viernes</strong>
 
-                                <p data-aos="fade-up" data-aos-delay="800">7:00 AM - 10:00 PM</p>
+                                <p data-aos="fade-up" data-aos-delay="800"><?php echo $horaApertura[0]['horario_apertura'] . ' - ' . $horaCierre[0]['horario_cierre']; ?></p>
 
                                 <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Sábado</strong>
 
