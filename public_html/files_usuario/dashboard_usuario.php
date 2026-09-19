@@ -13,16 +13,17 @@ $id_usuario = $_SESSION['user_id'];
 $clases_inscritas = $claseHelper->obtenerClasesUsuario($id_usuario);
 $clases_disponibles = $claseHelper->obtenerClases(); // Todas las clases, filtrar las no inscritas
 // Filtrar clases: solo hoy o días posteriores
-$hoy = strtotime(date('Y-m-d')); // Hoy a las 00:00
+$hoy = strtotime(date('Y-m-d'));
 
-$clases_disponibles = array_filter($clases_disponibles, function ($c) use ($hoy) {
-    $fechaClase = strtotime(date('Y-m-d', strtotime($c['fecha_hora'])));
+$clases_disponibles = array_filter($clases_disponibles, function ($clase) use ($hoy) {
+    $fechaClase = strtotime(date('Y-m-d', strtotime($clase['fecha_hora'])));
+
     return $fechaClase >= $hoy;
 });
 
-
-// Filtrar clases disponibles (no inscritas)
+// Filtrar clases: excluir todas las clases ya inscritas
 $ids_inscritas = array_column($clases_inscritas, 'id_clase');
+
 $clases_disponibles = array_filter($clases_disponibles, function ($clase) use ($ids_inscritas) {
     return !in_array($clase['id_clase'], $ids_inscritas);
 });
