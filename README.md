@@ -14,11 +14,10 @@ http://localhost/Gym_Web/public_html/
 
 ### Credenciales de prueba
 
-No hay un usuario fijo incluido en el proyecto. Para probar el acceso:
+- Administrador --> usuario:admin@gymweb.com / contraseña: admin123
+- Usuario --> usuario:demo1@gmail.com   /  contrseña: Demo1234.
 
-1. Ejecuta la instalación de la base de datos.
-2. Registra un usuario desde `signup_plan.php`.
-3. Inicia sesión desde `login.php`.
+- El usuario puede ser registrado en el momento 
 
 La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial. El rol de usuario se asigna durante el registro.
 
