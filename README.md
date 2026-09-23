@@ -74,7 +74,7 @@ La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter e
 http://localhost/Gym_Web/public_html/
 ```
 
-> No subas el archivo `.env` ni las credenciales de la base de datos a un repositorio público.
+
 
 ## Estructura del proyecto
 
